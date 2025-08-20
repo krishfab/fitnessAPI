@@ -46,3 +46,18 @@ module.exports.login = async (req, res) => {
     res.status(500).send({ error: error.message });
   }
 };
+
+
+module.exports.getDetails = async (req, res) => {
+  try {
+    // req.user is set by verify middleware
+    const userId = req.user.id;
+
+    const user = await User.findById(userId).select("-password"); // exclude password
+    if (!user) return res.status(404).json({ success: false, message: "User not found" });
+
+    res.status(200).json({ success: true, data: user });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+};
