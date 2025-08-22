@@ -20,3 +20,5 @@ app.use("/users", userRoutes);
 app.use("/workouts", workoutRoutes);
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
+
+module.exports = { app, mongoose };
