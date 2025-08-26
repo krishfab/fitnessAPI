@@ -14,6 +14,7 @@ app.use(express.json());
 
 const corsOptions = {
     origin: [
+        'https://fitness-api-rouge.vercel.app',
         'http://localhost:3000',
         'http://localhost:8000'
     ],
