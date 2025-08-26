@@ -22,8 +22,8 @@ const handleSubmit = async (e) => {
 
   try {
     if (isLogin) {
+      console.log("API URL:", process.env.REACT_APP_API_URL);
       const res = await fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
-        console.log("API URL:", process.env.REACT_APP_API_URL);
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: form.email, password: form.password }),
