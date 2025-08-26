@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Gagalin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alexandria&display=swap');
+
+/* ===== BODY ===== */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background-image: url('../public/images/1.jpg');
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* ===== APP CONTAINER (glassy black) ===== */
+.App {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.6); /* black glass */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 18px;
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ===== NAVBAR ===== */
+.navbar-brand {
+  font-weight: 1000; 
+  background: linear-gradient(90deg, red, orange); 
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent; 
+}
+
+/* ===== HOME HEADER ===== */
+.home-header {
+  position: relative;  
+  text-align: center;
+  margin: 0 !important;
+  background-image: url('../public/images/HomeHeader.jpg') !important;
+  background-size: cover;
+  background-position: center;
+  height: 800px !important;
+  display: flex;
+  align-items: center;
+}
+
+.home-header::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* overlay for readability */
+  z-index: 1;
+}
+
+.home-header .container {
+  position: relative;
+  z-index: 10;
+}
+
+.home-header h1, .home-header h2 {
+  font-family: 'Alexandria', sans-serif;
+}
+
+.home-header h1 {
+  font-weight: 1000; 
+  background: linear-gradient(90deg, red, orange); 
+  -webkit-background-clip: text; 
+  -webkit-text-fill-color: transparent; 
+}
+
+.start-button {
+  margin-top: 10px;
+  width: 290px;
+  height: 44px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  z-index: 10;
+  position: relative;
+}
+
+.start-button:hover {
+  background-color: #cc0000;
+}
+
+/* ===== DASHBOARD ===== */
+.dashboard {
+  padding: 24px;
+}
+
+.dashboard-header {
+  font-family: 'Alexandria', sans-serif;
+  font-weight: 800;
+  color: #ff4500; /* bright red/orange */
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.dashboard-subheader {
+  font-family: 'Alexandria', sans-serif;
+  font-weight: 700;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+/* ===== PROFILE CARD ===== */
+.profile-card {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 32px;
+  margin: 24px 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-card h2 {
+  font-family: 'Alexandria', sans-serif;
+  margin-bottom: 12px;
+}
+
+.profile-subtext {
+  font-family: 'Gagalin', sans-serif;
+  font-size: 1em;
+  margin-top: 4px;
+}
+
+.card-title {
+  font-weight: 600 !important;
+  font-size: 1.5em;
+  color: #cc0000;
+  margin-bottom: 6px;
+}
+.workout-info {
+  display: flex;
+  flex-direction: column;
+  padding: 1;
+  margin-bottom: 10px;
+}
+
+.status-card {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10;
+}
+
+/* ===== BUTTONS ===== */
+.add-button {
+  background-color: orangered; /* bright red/orange */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-left: 10px;
+}
+
+.delete-button {
+  background-color: darkred; /* tomato red */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.complete-button {
+  margin-right: 10px;
+  background-color: white; 
+  color: black;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* PROFILE */
+
+.profile-input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.profile-input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.profile-input:focus {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.update-button {
+  background-color: orangered; 
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
+}
