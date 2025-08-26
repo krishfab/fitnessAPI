@@ -9,7 +9,7 @@ export default function Logout() {
   useEffect(() => {
     const performLogout = () => {
       logout(); // clear token and user data
-      navigate("/login", { replace: true }); // redirect to login page
+      navigate("/home", { replace: true }); // redirect to login page
     };
 
     performLogout();

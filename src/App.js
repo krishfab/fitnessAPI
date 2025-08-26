@@ -19,23 +19,23 @@ export default function App() {
       <NavBar />
       <div className="min-h-screen bg-gray-100">
        <Routes>
-  <Route path="/home" element={<Home />} />
-  <Route
-    path="/login"
+      <Route path="/home" element={<Home />} />
+       <Route
+         path="/login"
     element={token ? <Navigate to="/workouts" /> : <Login />}
-  />
-  <Route
-    path="/workouts"
-    element={token ? <Dashboard /> : <Navigate to="/login" />}
-  />
-  <Route
-    path="/profile"
-    element={token ? <Profile /> : <Navigate to="/login" />}
-  />
-  <Route
-    path="/logout"
-    element={<Logout />}
-  />
+     />
+      <Route
+        path="/workouts"
+        lement={token ? <Dashboard /> : <Navigate to="/login" />}
+     />
+      <Route
+        path="/profile"
+        element={token ? <Profile /> : <Navigate to="/login" />}
+      />
+      <Route
+       path="/logout"
+       element={<Logout />}
+       />
 </Routes>
       </div>
     </>
