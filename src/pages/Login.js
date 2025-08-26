@@ -17,42 +17,43 @@ export default function Auth() {
   const handleChange = (e) =>
     setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    try {
-      if (isLogin) {
-        // LOGIN
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: form.email, password: form.password }),
-        });
+  try {
+    if (isLogin) {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: form.email, password: form.password }),
+      });
 
-        if (!res.ok) throw new Error("Login failed");
-
-        const data = await res.json();
-        login(data.access); // save token in context and localStorage
-      } else {
-        // REGISTER
-        const res = await fetch(`${process.env.REACT_APP_API_URL}/users/register`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(form),
-        });
-
-        if (!res.ok) throw new Error("Registration failed");
-
-        alert("Registered! Please login.");
-        setIsLogin(true);
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(text || "Login failed");
       }
-    } catch (err) {
-      alert(err.message);
+
+      const data = await res.json();
+      const token = data.access;
+
+      // Fetch user details immediately after login
+      const userRes = await fetch(`${process.env.REACT_APP_API_URL}/users/details`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const userBody = await userRes.json();
+      const userData = userBody.data;
+
+      login(token, userData); // store token + user in context
+    } else {
+      // registration...
     }
-  };
+  } catch (err) {
+    alert(err.message);
+  }
+};
 
   return (
-    <div className="p-6 max-w-sm mx-auto border rounded shadow-md">
+    <div className="p-6 max-w-sm mx-auto border rounded shadow-md auth-container">
       <h2 className="text-xl mb-4">{isLogin ? "Login" : "Register"}</h2>
       <form onSubmit={handleSubmit} className="space-y-3">
         {!isLogin && (
@@ -95,7 +96,7 @@ export default function Auth() {
         </button>
       </form>
       <p
-        className="mt-3 text-sm cursor-pointer text-blue-600"
+        className="auth-toggle"
         onClick={() => setIsLogin(!isLogin)}
       >
         {isLogin ? "Create an account" : "Already have an account? Login"}

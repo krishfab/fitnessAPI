@@ -6,10 +6,10 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("access") || "");
 
-  const login = (userData, token) => {
-    setUser(userData);
+  const login = (token, userData = null) => {
     setToken(token);
     localStorage.setItem("access", token);
+    if (userData) setUser(userData);
   };
 
   const logout = () => {

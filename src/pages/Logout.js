@@ -7,8 +7,12 @@ export default function Logout() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    logout(); // clear token and user data
-    navigate("/login"); // redirect to login page
+    const performLogout = () => {
+      logout(); // clear token and user data
+      navigate("/login", { replace: true }); // redirect to login page
+    };
+
+    performLogout();
   }, [logout, navigate]);
 
   return (
@@ -17,3 +21,4 @@ export default function Logout() {
     </div>
   );
 }
+

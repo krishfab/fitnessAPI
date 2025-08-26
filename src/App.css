@@ -222,3 +222,80 @@ body {
   transition: background-color 0.3s ease;
   margin-top: 20px;
 }
+
+/* LOGIN AND LOGOUT */
+
+/* ===== AUTH FORM ===== */
+.auth-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 32px;
+  background: rgba(0, 0, 0, 0.6); /* black glass */
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 18px;
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.auth-container h2 {
+  font-family: 'Alexandria', sans-serif;
+  font-weight: 800;
+  margin-bottom: 24px;
+  color: #ff4500;
+}
+
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-container input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 1em;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.auth-container input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.auth-container input:focus {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.auth-container button {
+  background-color: orangered;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.auth-container button:hover {
+  background-color: #cc3300;
+}
+
+.auth-toggle {
+  margin-top: 12px;
+  font-size: 0.9em;
+  cursor: pointer;
+  color: #ff8c00;
+  text-decoration: underline;
+}
+
+.auth-toggle:hover {
+  color: #ffa500;
+}

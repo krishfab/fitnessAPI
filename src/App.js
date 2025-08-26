@@ -7,6 +7,7 @@ import Home from "./components/HomeHeader";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
+import Logout from "./pages/Logout";
 
 import './App.css';
 
@@ -17,21 +18,25 @@ export default function App() {
     <>
       <NavBar />
       <div className="min-h-screen bg-gray-100">
-        <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route
-            path="/login"
-            element={token ? <Navigate to="/workouts" /> : <Login />}
-          />
-          <Route
-            path="/workouts"
-            element={token ? <Dashboard /> : <Navigate to="/login" />}
-          />
-           <Route
+       <Routes>
+  <Route path="/home" element={<Home />} />
+  <Route
+    path="/login"
+    element={token ? <Navigate to="/workouts" /> : <Login />}
+  />
+  <Route
+    path="/workouts"
+    element={token ? <Dashboard /> : <Navigate to="/login" />}
+  />
+  <Route
     path="/profile"
     element={token ? <Profile /> : <Navigate to="/login" />}
   />
-        </Routes>
+  <Route
+    path="/logout"
+    element={<Logout />}
+  />
+</Routes>
       </div>
     </>
   );
