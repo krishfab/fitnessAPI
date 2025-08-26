@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
 import Logout from "./pages/Logout";
 
+
 import './App.css';
 
 export default function App() {
@@ -22,11 +23,11 @@ export default function App() {
       <Route path="/home" element={<Home />} />
        <Route
          path="/login"
-    element={token ? <Navigate to="/workouts" /> : <Login />}
+         element={token ? <Navigate to="/workouts" /> : <Login />}
      />
       <Route
         path="/workouts"
-        lement={token ? <Dashboard /> : <Navigate to="/login" />}
+        element={token ? <Dashboard /> : <Navigate to="/login" />}
      />
       <Route
         path="/profile"
