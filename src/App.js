@@ -20,6 +20,7 @@ export default function App() {
       <NavBar />
       <div className="min-h-screen bg-gray-100">
        <Routes>
+        <Route path="/" element={<Home />} />
       <Route path="/home" element={<Home />} />
        <Route
          path="/login"
