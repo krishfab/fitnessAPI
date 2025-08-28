@@ -22,7 +22,7 @@ const handleSubmit = async (e) => {
 
   try {
     if (isLogin) {
-      console.log("API URL:", process.env.REACT_APP_API_URL);
+      // LOGIN FLOW
       const res = await fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -37,7 +37,6 @@ const handleSubmit = async (e) => {
       const data = await res.json();
       const token = data.access;
 
-      // Fetch user details immediately after login
       const userRes = await fetch(`${process.env.REACT_APP_API_URL}/users/details`, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -45,13 +44,52 @@ const handleSubmit = async (e) => {
       const userData = userBody.data;
 
       login(token, userData); // store token + user in context
+
     } else {
-      // registration...
+      // REGISTRATION FLOW
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/users/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      if (!res.ok) {
+        // Try to parse JSON error from backend
+        const errData = await res.json().catch(() => null);
+        throw new Error(errData?.message || "Registration failed");
+      }
+
+      // Option 1: Alert and switch to login
+      alert("Registration successful! Logging you in...");
+
+      // Option 2: Auto-login after registration
+      const loginRes = await fetch(`${process.env.REACT_APP_API_URL}/users/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: form.email, password: form.password }),
+      });
+
+      if (!loginRes.ok) {
+        const text = await loginRes.text();
+        throw new Error(text || "Auto-login failed");
+      }
+
+      const loginData = await loginRes.json();
+      const token = loginData.access;
+
+      const userRes = await fetch(`${process.env.REACT_APP_API_URL}/users/details`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      const userBody = await userRes.json();
+      const userData = userBody.data;
+
+      login(token, userData); // auto-login
     }
   } catch (err) {
     alert(err.message);
   }
 };
+
 
   return (
     <div className="p-6 max-w-sm mx-auto border rounded shadow-md auth-container">
@@ -84,6 +122,7 @@ const handleSubmit = async (e) => {
           placeholder="Email"
           onChange={handleChange}
           className="border p-2 w-full"
+           autoComplete="email"
         />
         <input
           name="password"
@@ -91,6 +130,7 @@ const handleSubmit = async (e) => {
           placeholder="Password"
           onChange={handleChange}
           className="border p-2 w-full"
+           autoComplete="current-password"
         />
         <button className="bg-blue-500 text-white px-4 py-2 rounded w-full">
           {isLogin ? "Login" : "Register"}

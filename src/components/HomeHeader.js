@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../App.css'; // custom styles for button and background
+import '../App.css'; 
 
 const HomeHeader = () => {
   const navigate = useNavigate();
